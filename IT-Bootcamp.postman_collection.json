@@ -1,0 +1,5474 @@
+{
+	"info": {
+		"_postman_id": "625a6a4f-4d84-46a6-8e4e-9b05ec346625",
+		"name": "IT Bootcamp Ojacavanje",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Calls",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "GET / - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7ee712b7-875c-4bc8-9475-c95de75f1a50",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										""
+									]
+								},
+								"description": "API call - host. It should GET home API URL."
+							},
+							"response": [
+								{
+									"name": "Data type",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "This is expected to be sent back as part of response body."
+										},
+										"url": {
+											"raw": "https://postman-echo.com/patch",
+											"protocol": "https",
+											"host": [
+												"postman-echo",
+												"com"
+											],
+											"path": [
+												"patch"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 15 Nov 2018 22:21:46 GMT"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"237-50TomUYGT9/V9ahCSqZGYpnnS48\""
+										},
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Length",
+											"value": "410"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"args\": {},\n    \"data\": \"This is expected to be sent back as part of response body.\",\n    \"files\": {},\n    \"form\": {},\n    \"headers\": {\n        \"x-forwarded-proto\": \"https\",\n        \"host\": \"postman-echo.com\",\n        \"content-length\": \"58\",\n        \"accept\": \"*/*\",\n        \"accept-encoding\": \"gzip, deflate\",\n        \"cache-control\": \"no-cache\",\n        \"content-type\": \"text/plain\",\n        \"cookie\": \"sails.sid=s%3AUuE9kqyAFxbvBvvH8aX3WEBLXiNgjK7-.ErzxoeVFY7HfTK%2BPjoOs%2BzaP3yU8%2BcM59adz0oo9LlA\",\n        \"postman-token\": \"ebd30dd5-0044-4665-ae5c-cb31118f1119\",\n        \"user-agent\": \"PostmanRuntime/7.3.0\",\n        \"x-forwarded-port\": \"443\"\n    },\n    \"json\": null,\n    \"url\": \"https://postman-echo.com/patch\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST /login - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fe5951af-ba21-4fcd-b800-772b42ec1925",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// setting an environment variable for admin token\r",
+											"pm.environment.set(\"admin_token\", response.token);\r",
+											"\r",
+											"// setting an environment variable for admin ID\r",
+											"pm.environment.set(\"admin_id\", response.user._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{admin_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "API call - admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /register - 201 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "676bcc7d-cbfc-47f6-9911-23388ee1717e",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// setting an environment variable for user token\r",
+											"pm.environment.set(\"user_token\", response.token);\r",
+											"\r",
+											"// setting an environment variable for admin ID\r",
+											"pm.environment.set(\"user_id\", response.user._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/register",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "API call - registration with valid data. it should GET token"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /register  - 422 - call",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{random_user}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{random_password}}"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/register",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "API call - registration with a used email address"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /verify - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5eab2106-dd1d-48bb-a594-012c374c5c09",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "{{user_verification}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/verify",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"verify"
+									]
+								},
+								"description": "API call for verifying the user with valid ID.\r\nBefore this call, we need to POST/register the user, and after that to GET/profile."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /forgot - call",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/forgot",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"forgot"
+									]
+								},
+								"description": "API cal - for password, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /reset - call",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "a30a46b8-cc84-4c44-a334-f454d8283278",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/reset",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"reset"
+									]
+								},
+								"description": "API call - reset password, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /token - 200 - call",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/token",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"token"
+									]
+								},
+								"description": "API call - GET token. Valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /token - 401 - call",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/token",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"token"
+									]
+								},
+								"description": "API call - GET toke, invalid data."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "POST /login - admin - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "31789a36-75c7-401c-b17f-54ef80aba6a0",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"admin_token\", response.token);\r",
+											"pm.environment.set(\"admin_id\", response.user._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{admin_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "API call - admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /login - user - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "05d94a8b-2193-4279-a598-195e168c3b34",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// setting an environment variable for user token\r",
+											"pm.environment.set(\"user_token\", response.token);\r",
+											"\r",
+											"// setting an environment variable for admin ID\r",
+											"pm.environment.set(\"user_id\", response.user._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "API call - login with valid data. It should GET token. Before this call, we need to register user."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users - 401 - call",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - GET users, invalid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users - 200 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - GET users, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users?filter=admin&fields=name,email,city,country,phone - 200 call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users?filter=admin&fields=name,email,role,city,country,phone",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "admin"
+										},
+										{
+											"key": "fields",
+											"value": "name,email,role,city,country,phone"
+										}
+									]
+								},
+								"description": "API call - GET users, filtered data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 422 - no name - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, invalid data, no name."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 201 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a746445d-c2cd-4a73-b762-6037ab9f29e5",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// setting an environment variable for admin ID\r",
+											"pm.environment.set(\"user_id\", response._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 422 - same email - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, invalid data, already used email."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 422 - no role - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, invalid data, no role."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users/:id - 200 - call",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{server}}/users/{{user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "API call - GET user by ID, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /users/:id - 200 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{new_user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users/{{user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "API call - PATCH user by ID, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /users/:id - 422 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users/{{user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "API call - PATCH user by ID, invalid data, already used email."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - call for DEL - 201 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "dc63dc7a-d137-49e4-84c7-ed209fdc7b8f",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// setting an environment variable for admin ID\r",
+											"pm.environment.set(\"new_user_id\", response._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{random_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST new user, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /users/:id - 200 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users/{{new_user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{new_user_id}}"
+									]
+								},
+								"description": "API call - DEL user by ID, valid data."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "POST /login - call",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/login",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "API call - admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /profile - 401 - call",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "API call - GET profile, invalid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /profile  - 200 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9c330cbe-7efb-456c-ba34-ca9a54115a5c",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// // setting an environment variable for user verification\r",
+											"pm.environment.set(\"user_verification\", response.verification);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "API call - GET profile, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 422  - no mail - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "API call - PATCH profile, invalid data, no name."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 200 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "urlTwitter: ",
+											"value": "{{new_user_twitter}}",
+											"type": "text"
+										},
+										{
+											"key": "urlGitHub: ",
+											"value": "{{new_user_git}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "API call - GET profile, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 422 - same email - call - FAIL",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "urlTwitter",
+											"value": "{{new_user_twitter}}",
+											"type": "text"
+										},
+										{
+											"key": "urlGitHub",
+											"value": "{{new_user_git}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "API call - GET profile, invalid data, already used email. This call FAIL."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 422 - bad url - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "urlTwitter",
+											"value": "{{bad_user_twiter}}",
+											"type": "text"
+										},
+										{
+											"key": "urlGitHub",
+											"value": "{{bad_user_git}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "API call - GET profile, invalid data, bad url."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /profile/changePassword - 409 - bad old pass - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "{{random_password}}",
+											"type": "text"
+										},
+										{
+											"key": "newPasword",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/profile/changePassword",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"profile",
+										"changePassword"
+									]
+								},
+								"description": "API call - POST profile change password, invalid data, wrong old password."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /profile/changePassword - 422 - short pass - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "{{short_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/profile/changePassword",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"profile",
+										"changePassword"
+									]
+								},
+								"description": "API call - POST profile change password, invalid data, short new password."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /profile/changePassword - 200 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/profile/changePassword",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"profile",
+										"changePassword"
+									]
+								},
+								"description": "API call - POST profile change password, valid data."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "cities",
+					"item": [
+						{
+							"name": "POST /login - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "025da90a-66c8-4eca-b42c-e0bf7f6663ef",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"admin_token\", response.token);\r",
+											"pm.environment.set(\"admin_id\", response.user._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{admin_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "API call - admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities - 200 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "96654cf1-4e75-4b60-b4a8-c24097892172",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"random_city\", response.docs[3].name);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Test for API call with a valid token. We need to get the first page with cities."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities/all - 200 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eee018ef-fdd7-461d-b54b-b6102a935fd6",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"random_city\", response[3].name);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/all",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"all"
+									]
+								},
+								"description": "Test for API call with a valid token. We need to get all cities."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities?filter=Bucaramanga&fields=name - 200 - call",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities?filter=Bucaramanga&fields=name",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "Bucaramanga"
+										},
+										{
+											"key": "fields",
+											"value": "name"
+										}
+									]
+								},
+								"description": "API call with a valid token. We need to get a filtered city.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities - 401 - call",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Testing with invalid data(without token)."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /cities - no name - 422 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "API call, invalid data, no name.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /cities - 201 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d55e329f-76af-4947-bf7a-e088e2026ba5",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"new_city_id\", response._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_city}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "API call, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /cities - same name - 422 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{random_city}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "API call, invalid data, existed name.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities/:id - 200 - call",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/{{new_city_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"{{new_city_id}}"
+									]
+								},
+								"description": "API call GET city by ID."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /cities/:id - 200 - call",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d4a45a5d-ab33-4daf-bdcd-91c68efd728e",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"new_city_id\", response._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/{{new_city_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"{{new_city_id}}"
+									]
+								},
+								"description": "API call PATCH city by ID."
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /cities/:id - 200 - call",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/{{new_city_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"{{new_city_id}}"
+									]
+								},
+								"description": "API call DEL city by ID."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API Tests",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "GET / - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "451c2b0d-9e86-4726-b5e7-8a060e653a89",
+										"exec": [
+											"// testing content type is html",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header('Content-Type');",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.include('text/html');",
+											"});",
+											"",
+											"// testing response time",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										""
+									]
+								},
+								"description": "We test host. It should GET home API URL."
+							},
+							"response": [
+								{
+									"name": "Data type",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "This is expected to be sent back as part of response body."
+										},
+										"url": {
+											"raw": "https://postman-echo.com/patch",
+											"protocol": "https",
+											"host": [
+												"postman-echo",
+												"com"
+											],
+											"path": [
+												"patch"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 15 Nov 2018 22:21:46 GMT"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"237-50TomUYGT9/V9ahCSqZGYpnnS48\""
+										},
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Length",
+											"value": "410"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"args\": {},\n    \"data\": \"This is expected to be sent back as part of response body.\",\n    \"files\": {},\n    \"form\": {},\n    \"headers\": {\n        \"x-forwarded-proto\": \"https\",\n        \"host\": \"postman-echo.com\",\n        \"content-length\": \"58\",\n        \"accept\": \"*/*\",\n        \"accept-encoding\": \"gzip, deflate\",\n        \"cache-control\": \"no-cache\",\n        \"content-type\": \"text/plain\",\n        \"cookie\": \"sails.sid=s%3AUuE9kqyAFxbvBvvH8aX3WEBLXiNgjK7-.ErzxoeVFY7HfTK%2BPjoOs%2BzaP3yU8%2BcM59adz0oo9LlA\",\n        \"postman-token\": \"ebd30dd5-0044-4665-ae5c-cb31118f1119\",\n        \"user-agent\": \"PostmanRuntime/7.3.0\",\n        \"x-forwarded-port\": \"443\"\n    },\n    \"json\": null,\n    \"url\": \"https://postman-echo.com/patch\"\n}"
+								}
+							]
+						},
+						{
+							"name": "POST /login - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4805a90a-8672-4d52-bf2d-d375830df9df",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.environment.set(\"admin_token\", response.token);\r",
+											"pm.environment.set(\"admin_id\", response.user._id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// testing whether the body is an object, and are there properties token and user\r",
+											"pm.test(\"Response body is an object with token and user\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"    pm.expect(response).to.have.property('user');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{admin_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "We test admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /register - 201 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4e429633-de7e-4fc7-a5e8-a6922443ee1e",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"user_token\", response.token);\r",
+											"pm.environment.set(\"user_id\", response.user._id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"// testing whether the body is an object, and are there properties token and user\r",
+											"pm.test(\"Response body is an object with token and user\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"    pm.expect(response).to.have.property('user');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/register",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "testing registration with valid data. it should GET token"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /register  - 422 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d0d09474-6502-4213-8a25-a71da44e3c9b",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with errors\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"});\r",
+											" // testing message from the body\r",
+											"pm.test(\"An errors have message that email already exist\", function () {\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg[0].msg).to.be.eql(\"EMAIL_IS_NOT_VALID\");\r",
+											"\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{random_user}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{random_password}}"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/register",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "testing registration with a used email address. it shouldn't post a new user."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /verify - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9b8dbf18-f545-421d-a51e-c898b7371008",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body has an object with properties email and verified\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('email');\r",
+											"    pm.expect(response).to.have.property('verified');\r",
+											"});\r",
+											"\r",
+											"// the test - is verified property in the response body is set to true.\r",
+											"pm.test(\"Verified should be true\", function () {\r",
+											"    pm.expect(response.verified).to.be.eql(true);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "{{user_verification}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/verify",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"verify"
+									]
+								},
+								"description": "Testing verification the user with valid data.\r\nBefore this call, we need to POST/register the user, and after that to GET/profile."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /forgot - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5b60d622-911d-4956-91dd-38be7b3ff242",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// testing message in the response body\r",
+											"pm.test(\"Response body has an object with property msg\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('msg');\r",
+											"    pm.expect(response.msg).to.be.eql(\"RESET_EMAIL_SENT\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/forgot",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"forgot"
+									]
+								},
+								"description": "Test - forgot password with valid email data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /token - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f2f776ce-9071-46ff-b81b-719c10e4dca1",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body has an object with propertiy token\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/token",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"token"
+									]
+								},
+								"description": "Test for API call with a valid token."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /token - 401 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cfbf6880-c2dc-41f0-bfea-edecca21ecbe",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/token",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"token"
+									]
+								},
+								"description": "Test for API call with an invalid token."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "POST /login - admin - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ee440066-83d8-4cbc-9958-05adaade2acc",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"admin_token\", response.token);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with token\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{admin_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "We test admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /login - user - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "057456fe-8cfe-4fc3-bd90-ec54e430f047",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with token\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "User login. Before this call, we need to create user.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users - 401 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9c2d5ff2-dc1b-42aa-abc0-e0cc0535552e",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "Test - GET users, invalid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2f2faf4c-f102-4204-a1ed-837232c602e9",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with property docs which is an array\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('docs');\r",
+											"    pm.expect(response.docs).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "Test - GET users, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users?filter=admin&fields=name,email,city,country,phone - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3693ee28-e8f1-4899-a60b-0c66198bb4a4",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with an array\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response.docs).to.be.an('array');\r",
+											"    pm.expect(response.docs.length).to.be.eql(1);\r",
+											"    pm.expect(response.docs[0]).to.have.property('email');\r",
+											"    pm.expect(response.docs[0].email).to.be.eql(pm.environment.get(\"admin_email\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users?filter=admin&fields=name,email,role,city,country,phone",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "admin"
+										},
+										{
+											"key": "fields",
+											"value": "name,email,role,city,country,phone"
+										}
+									]
+								},
+								"description": "Test - GET users, filtered data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 422 - no name - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "683dc256-e42e-4cb6-bee0-7d0bc0a29854",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with errors\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "Test - POST users, invalid data, no name."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 201 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "98324aee-06d0-4548-bbb2-63ddbd743251",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"user_id\", response._id);\r",
+											"pm.environment.set(\"user_token\", response.token);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with properties\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response).to.have.property('email');\r",
+											"    pm.expect(response).to.have.property('verification');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 422 - same email - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "72e3b013-2ff3-480c-a790-205a8d5e3634",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The response body is an object with properties and expected message.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg).to.be.eql('EMAIL_ALREADY_EXISTS');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, invalid data, already used email."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - 422 - no role - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "08dc58e7-ca92-43ca-a048-bbc9d6575ff3",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with properties\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "API call - POST users, invalid data, no role."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users/:id - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9c50fdbc-b36b-4741-b3d6-88a7eb10eae3",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with properties. Also test value of ID.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"    pm.expect(response._id).to.be.eql(pm.environment.get(\"user_id\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{server}}/users/{{user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "Test - GET user by ID, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /users/:id - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "796c6a16-b990-4c6d-aba8-aa6a66fe3f23",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"new_user_id\", response._id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with properties\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"    pm.expect(response._id).to.be.eql(pm.environment.get(\"new_user_id\"));\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response.name).to.be.eql(pm.environment.get(\"new_user_name\"));\r",
+											"    pm.expect(response).to.have.property('email');\r",
+											"    pm.expect(response.email).to.be.eql(pm.environment.get(\"new_user_email\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{new_user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users/{{user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "Test - PATCH user by ID, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /users/:id - 422 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "220fbfe4-79a0-4bd0-9f50-b3219c0b08db",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"user_id\", response._id);\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The response body is an object with properties and expected message.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg).to.be.eql('EMAIL_ALREADY_EXISTS');\r",
+											"\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users/{{user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								},
+								"description": "Test - PATCH user by ID, invalid data, already used email."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /users - call for DEL - 201 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "777085ea-08bd-4348-870f-82a0b48d36e3",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"new_user_id\", response._id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with properties and their values\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"    pm.expect(response._id).to.be.eql(pm.environment.get(\"new_user_id\"));\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response.name).to.be.eql(pm.environment.get(\"new_user_name\"));\r",
+											"    pm.expect(response).to.have.property('email');\r",
+											"    pm.expect(response.email).to.be.eql(pm.environment.get(\"random_email\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{random_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "{{user_role}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/users",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users"
+									]
+								},
+								"description": "Test - POST new user, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /users/:id - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a85ab3e6-3a81-42d2-aec3-52c6bb77470c",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"user_id\", response._id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with property msg.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('msg');\r",
+											"    pm.expect(response.msg).to.be.eql('DELETED');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/users/{{new_user_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"users",
+										"{{new_user_id}}"
+									]
+								},
+								"description": "Test - DEL user by ID, valid data."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "POST /login - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "33926f56-780f-4f4a-a7ba-81c9932240f9",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"user_token\", response.token);\r",
+											"pm.environment.set(\"user_id\", response.user._id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with token and user\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"    pm.expect(response).to.have.property('user');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/login",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "API call - login with valid data. It should GET token. Before this call, we need to register user."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /profile - 401 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f97e5fbe-f96c-4702-9b1b-0d6bc7af233d",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "Test - GET profile, invalid data."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /profile  - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4a7a1c7b-b701-474c-8dc0-d2881162e4fb",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"// setting an environment variable for user verification\r",
+											"pm.environment.set(\"user_verification\", response.verification);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response).to.have.property('email');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{user_email}}",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "{{user_name}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "Test - GET profile, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 422  - no mail - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "894d0bdf-2cce-42c3-8720-b2e2b812e916",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with errors\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "Test - PATCH profile, invalid data, no email."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a87c5afd-3154-47db-9750-8e78d468373a",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with properties and their new values\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response.name).to.be.eql(pm.environment.get(\"new_user_name\"));\r",
+											"    pm.expect(response).to.have.property('phone');\r",
+											"    pm.expect(response.phone).to.be.eql(pm.environment.get(\"new_user_phone\"));\r",
+											"    pm.expect(response).to.have.property('city');\r",
+											"    pm.expect(response.city).to.be.eql(pm.environment.get(\"new_user_city\"));\r",
+											"    pm.expect(response).to.have.property('country');\r",
+											"    pm.expect(response.country).to.be.eql(pm.environment.get(\"new_user_country\"));\r",
+											"    pm.expect(response).to.have.property('urlTwitter');\r",
+											"    pm.expect(response.urlTwitter).to.be.eql(pm.environment.get(\"new_user_twitter\"));\r",
+											"    pm.expect(response).to.have.property('urlGitHub');\r",
+											"    pm.expect(response.urlGitHub).to.be.eql(pm.environment.get(\"new_user_git\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "urlTwitter",
+											"value": "{{new_user_twitter}}",
+											"type": "text"
+										},
+										{
+											"key": "urlGitHub",
+											"value": "{{new_user_git}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "Test - GET profile, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 422 - same email - test - FAIL",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "336d222b-0d4f-4069-841f-4a8a38d6a124",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with errors\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "{{admin_password}}",
+											"type": "text"
+										},
+										{
+											"key": "urlTwitter",
+											"value": "{{new_user_twitter}}",
+											"type": "text"
+										},
+										{
+											"key": "urlGitHub",
+											"value": "{{new_user_git}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "Test - GET profile, invalid data, already used email. This test FAIL. Response is 200, email isn't changed."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /profile - 422 - bad url - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5c8a1473-46c6-4595-ac54-cb00074f4ac9",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The response body is an object with errors and expected message.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg[0].msg).to.be.eql('NOT_A_VALID_URL');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_name}}",
+											"type": "text"
+										},
+										{
+											"key": "urlTwitter",
+											"value": "{{bad_user_twiter}}",
+											"type": "text"
+										},
+										{
+											"key": "urlGitHub",
+											"value": "{{bad_user_git}}",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "{{new_user_phone}}",
+											"type": "text"
+										},
+										{
+											"key": "city",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "{{new_user_country}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "https://api-demo.daniel-avellaneda.com/profile",
+									"protocol": "https",
+									"host": [
+										"api-demo",
+										"daniel-avellaneda",
+										"com"
+									],
+									"path": [
+										"profile"
+									]
+								},
+								"description": "Test - GET profile, invalid data, bad url."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /profile/changePassword - 409 - bad old pass - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "59ea743f-2d5a-4d90-afcf-dbc12121dbb1",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 409\", function () {\r",
+											"    pm.response.to.have.status(409);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The response body is an object with errors and expected message.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg).to.be.eql('WRONG_PASSWORD');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "{{random_password}}",
+											"type": "text"
+										},
+										{
+											"key": "newPasword",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/profile/changePassword",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"profile",
+										"changePassword"
+									]
+								},
+								"description": "Test - POST profile change password, invalid data, wrong old password."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /profile/changePassword - 422 - short pass - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e44c5adc-9f30-4021-9126-1ef58c06624e",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The response body is an object with errors and expected message.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"    pm.expect(response.errors).to.have.property('msg');\r",
+											"    pm.expect(response.errors.msg[0].msg).to.be.eql('PASSWORD_TOO_SHORT_MIN_5');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "{{short_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/profile/changePassword",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"profile",
+										"changePassword"
+									]
+								},
+								"description": "Test - POST profile change password, invalid data, short new password."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /profile/changePassword - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7f5246a9-a5c6-470d-abb5-077eab7a71cd",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"The response body is an object with expected message.\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('msg');\r",
+											"    pm.expect(response.msg).to.be.eql('PASSWORD_CHANGED');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "{{user_password}}",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "{{new_user_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/profile/changePassword",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"profile",
+										"changePassword"
+									]
+								},
+								"description": "API call - POST profile change password, valid data."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "cities",
+					"item": [
+						{
+							"name": "POST /login - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ef6eff0d-ef3b-481d-b945-aaf5007c2616",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"admin_token\", response.token);\r",
+											"pm.environment.set(\"admin_id\", response.user._id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with token\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('token');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{admin_email}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{admin_password}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/login",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"login"
+									]
+								},
+								"description": "We test admin login with valid data. It should GET token."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1c8773f3-d108-4e9c-94fb-8b3b43a53b69",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"random_city_id\", response.docs[2]._id);\r",
+											"pm.environment.set(\"random_city\", response.docs[3].name);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with an array\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response.docs).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Test for API call with a valid token. We need to get the first page with cities."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities - 401 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0a9d8bda-6e7e-4fa2-9887-6cd5c5dc50bf",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Testing with invalid data(without token)."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities/all - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b9d9f965-4128-4134-978d-c14ed2ebf667",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an array\", function () {\r",
+											"    pm.expect(response).to.be.an('array');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/all",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"all"
+									]
+								},
+								"description": "Test for API call with a valid token. We need to get all cities."
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities?filter=Bucaramanga&fields=name - 200 - test",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e8b3b575-029c-4065-a4e0-9044d638eb45",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "da1b28eb-ed5f-4650-addc-43cc4ca6d67c",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with an array\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response.docs).to.be.an('array');\r",
+											"    pm.expect(response.docs.length).to.be.eql(1);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Docs have one element, and name of a city is Bucaramanga\", function () {\r",
+											"    pm.expect(response.docs[0]).to.have.property('name');\r",
+											"    pm.expect(response.docs[0].name).to.be.eql(\"Bucaramanga\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities?filter=Bucaramanga&fields=name",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "Bucaramanga"
+										},
+										{
+											"key": "fields",
+											"value": "name"
+										}
+									]
+								},
+								"description": "Test for API call with a valid token. We need to get a filtered city.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /cities - no name - 422 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bd855b4e-7236-4ee1-a53b-3ec7880bdc1e",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with errors\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Test for API call, invalid data, no name.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "POST /cities - 201 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7d900ad5-200d-4672-bd53-f1c0309ac70b",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"new_city_id\", response._id);\r",
+											"\r",
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with name and id\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_city}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Test for API call, valid data."
+							},
+							"response": []
+						},
+						{
+							"name": "POST /cities - same name - 422 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3e824e23-41df-455b-8a94-b07ecfe1ce1d",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with errors\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('errors');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{random_city}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities"
+									]
+								},
+								"description": "Test for API call, invalid data, existed name.\r\n"
+							},
+							"response": []
+						},
+						{
+							"name": "GET /cities/:id - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "09247fa9-a446-47a8-afd4-168c0f1a688d",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with correct id and name\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"    pm.expect(response._id).to.be.eql(pm.environment.get(\"new_city_id\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/{{new_city_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"{{new_city_id}}"
+									]
+								},
+								"description": "Test for API call GET city by ID."
+							},
+							"response": []
+						},
+						{
+							"name": "PATCH /cities/:id - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6ee8416-9d7e-4ce2-9921-2748e5d57311",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"pm.environment.set(\"new_city_id\", response._id);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with correct id and name\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('_id');\r",
+											"    pm.expect(response._id).to.be.eql(pm.environment.get(\"random_city_id\"));\r",
+											"    pm.expect(response).to.have.property('name');\r",
+											"    pm.expect(response.name).to.be.eql(pm.environment.get(\"random_city\"));\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "{{new_user_city}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/{{new_city_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"{{new_city_id}}"
+									]
+								},
+								"description": "Test for API call PATCH city by ID."
+							},
+							"response": []
+						},
+						{
+							"name": "DEL /cities/:id - 200 - test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b876bbda-089d-4a53-9543-18aae7131784",
+										"exec": [
+											"let response = pm.response.json();\r",
+											"\r",
+											"pm.environment.get(\"variable_key\");\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body is an object with correct message\", function () {\r",
+											"    pm.expect(response).to.be.an('object');\r",
+											"    pm.expect(response).to.have.property('msg');\r",
+											"    pm.expect(response.msg).to.be.eql('DELETED');\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/cities/{{new_city_id}}",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"cities",
+										"{{new_city_id}}"
+									]
+								},
+								"description": "Test for API call DEL city by ID."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
